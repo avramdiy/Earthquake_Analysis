@@ -2,6 +2,7 @@ from flask import Flask, jsonify, render_template, send_file
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
+import seaborn as sns
 from io import BytesIO
 
 # Initialize Flask app
@@ -39,18 +40,18 @@ def get_earthquakes():
     # Convert DataFrame to a dictionary (list of records)
     earthquakes = data.to_dict(orient='records')
     return jsonify(earthquakes)
-
-# New route to plot time vs magnitude
-@app.route('/plot', methods=['GET'])
-def plot_time_magnitude():
-    # Ensure that both 'time' and 'magnitude' columns are present
+    
+@app.route('/boxplot', methods=['GET'])
+def plot_boxplot():
+    # Ensure that both 'time' and 'mag' columns are present
     if 'time' in data.columns and 'mag' in data.columns:
-        # Create a plot
-        plt.figure(figsize=(10, 6))
-        plt.plot(data['time'], data['mag'], marker='o', linestyle='-', color='b')
-        plt.title('Earthquake Magnitude Over Time')
-        plt.xlabel('Year')
+        # Create the box plot
+        plt.figure(figsize=(12, 8))
+        sns.boxplot(x='time', y='mag', data=data, palette='coolwarm')
+        plt.title('Distribution of Earthquake Magnitudes by Year')
+        plt.xlabel('Time')
         plt.ylabel('Magnitude')
+        plt.xticks(rotation=45)
         plt.grid(True)
 
         # Save the plot to a BytesIO object
@@ -63,6 +64,15 @@ def plot_time_magnitude():
         return send_file(img, mimetype='image/png')
     else:
         return "Columns 'time' or 'mag' are missing from the data.", 400
+    
+@app.route('/stats', methods=['GET'])
+def get_statistics():
+    if 'time' in data.columns and 'mag' in data.columns:
+        stats = data.groupby('time')['mag'].agg(['count', 'mean', 'median', 'std', 'min', 'max']).reset_index()
+        return stats.to_html(index=False)
+    else:
+        return "Columns 'time' or 'mag' are missing from the data.", 400
+
 
 # Run the Flask app
 if __name__ == '__main__':

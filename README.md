@@ -1,6 +1,6 @@
 # Week 6 Github Analysis : Earthquakes
 
-## 1st Commit
+## 1st Commit | 1/9/25
 
 - Extracted dataset from https://www.kaggle.com/datasets/bakiturhan/earthquake-dataset
 
@@ -8,7 +8,7 @@
 
 - Created initial code in data.py to load the csv into a html format prior to cleaning.
 
-## 2nd Commit
+## 2nd Commit | 1/10/25
 
 - Added the @app.route('/') to visualize head(10) to understand what data to clean
 
@@ -22,8 +22,14 @@
 
 - Line chart is messy and aggregated data is not visually clean. Fix in 3rd commit.
 
-## 3rd Commit
+## 3rd Commit | 1/11/25
 
-## 4th Commit
+- Adjusted the line plot code to be a scatterplot instead.
 
-## 5th Commit
+- Removed /heatmap & /plot code. Used a /boxplot to demonstrate outliers and visualize the aggregated magnitude per year.
+
+- Added /stats to retrieve the mean, median, and standard deviation of magnitudes, count of earthquakes per year, and the minimum & maximum magnitudes.
+
+## 4th Commit | 1/12/25
+
+## 5th Commit | 1/13/25
