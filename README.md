@@ -32,4 +32,8 @@
 
 ## 4th Commit | 1/12/25
 
+- Created /interactive-scatter route & interactive-scatter.html for users to specifically focus on certain sections of the magnitudes and timeframes.
+
+- Customized ('/') route to show a dashboard with individual buttons to load the webpages for /stats /boxplot /interactive-scatter routes
+
 ## 5th Commit | 1/13/25

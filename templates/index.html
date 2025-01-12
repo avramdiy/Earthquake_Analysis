@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Data Preview</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthquake Data Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>First 10 Rows of the Earthquakes Dataset</h1>
+    <h1>Earthquake Data Analysis</h1>
+    <p>Welcome to the Earthquake Data Analysis dashboard. Explore the visualizations below:</p>
+    
+    <!-- Buttons for visualizations -->
+    <div>
+        <a href="/boxplot" class="btn">View Box Plot</a>
+        <a href="/stats" class="btn">View Stats</a>
+        <a href="/interactive-scatter" class="btn">Interactive Scatter Plot</a>
+    </div>
+    
+    <!-- Table for displaying data -->
+    <h2>Sample Data</h2>
     {{ table | safe }}
 </body>
 </html>

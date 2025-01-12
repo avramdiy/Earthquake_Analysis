@@ -72,7 +72,22 @@ def get_statistics():
         return stats.to_html(index=False)
     else:
         return "Columns 'time' or 'mag' are missing from the data.", 400
-
+    
+@app.route('/interactive-scatter', methods=['GET'])
+def interactive_scatter():
+    import plotly.express as px
+    if 'time' in data.columns and 'mag' in data.columns:
+        fig = px.scatter(data, x='mag', y='time', title='Interactive Scatter Plot of Earthquakes',
+                         labels={'mag': 'Magnitude', 'time': 'Time'}, color='mag', 
+                         hover_data=['time'])
+        fig.update_layout(xaxis_title='Magnitude', yaxis_title='Time')
+        
+        # Save plot to HTML
+        html_path = 'templates/interactive_scatter.html'
+        fig.write_html(html_path)
+        return render_template('interactive_scatter.html')
+    else:
+        return "Columns 'year' or 'mag' are missing from the data.", 400
 
 # Run the Flask app
 if __name__ == '__main__':
